@@ -1,0 +1,210 @@
+---
+title: "CUNY DATA 621 - Business Analytics and Data Mining"
+author: "Group 1, 2018"
+subtitle: "Mental Health Survey - Data Prep and Basic EDA"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r, message=F, warning=F}
+if (!require('countrycode')) (install.packages('countrycode'))
+if (!require('dplyr')) (install.packages('dplyr'))
+if (!require('psych')) (install.packages('psych'))
+if (!require('DataExplorer')) (install.packages('DataExplorer'))
+if (!require('lubridate')) (install.packages('lubridate'))
+
+df <- read.csv("../Data/survey_RAW.csv")
+```
+
+# Data Source
+
+https://www.kaggle.com/osmi/mental-health-in-tech-survey
+
+### Basic Statistics
+
+The data is 307.5 Kb in size. There are 1,259 rows and 27 columns (features). Of all 27 columns, 26 are discrete, 1 are continuous, and 0 are all missing. There are 1,892 missing values out of 33,993 data points.
+
+## DATA PREPARATION
+
+### Comments
+
+This field is fascinating and ripe for text analysis.   We'll leave it in for now, but it would need to be further prepared for any regression to be done. 
+
+```{r}
+sample <- df[!(is.na(df$comments)), ]
+head(sample$comments)
+```
+
+### Date
+
+It's likely that the timestamp field will be omitted entirely from analysis, but should someone wish to use it, we'll convert it to the appropriate type. 
+
+```{r}
+df$Timestamp <- ymd_hms(df$Timestamp)
+```
+
+### Age
+
+Our Age variable has some clear and impossible outliers.   There are multiple values < 18 (even some negative numbers) and some values > 200 years old.   Instead of replacing these, for now, let's set to NA and impute later. 
+
+```{r}
+df$Age[df$Age > 73 | df$Age < 18 ] <- NA
+```
+
+### Gender
+
+Gender is more complex in this dataset.   Let's start by doing some rough matching and cleaning.
+
+```{r}
+df$Gender <- tolower(df$Gender)
+df$Gender <- trimws(df$Gender)
+
+### start with the obvious
+cis_female_syn <- c("femail", "f", "woman", "femail", "female (cis)",
+                    "cis female", "cis-female/femme", "femake", 
+                    "female")
+df$Gender[df$Gender %in% cis_female_syn] <- "female_cis"
+
+cis_male_syn <- c("m", "man", "male (cis)", "male", "mal", "mail", 
+                  "maile", "cis man", "cis male", "msle", "malr", 
+                  "make")
+df$Gender[df$Gender %in% cis_male_syn] <- "male_cis"
+
+trans_female_syn <- c("trans woman", "trans-female", "female (trans)")
+df$Gender[df$Gender %in% trans_female_syn] <- "female_trans"
+
+genderqueer_syn <- c("non-binary", "enby", "queer", "queer/she/they",
+                     "fluid", "androgyne", "agender", "neuter")
+df$Gender[df$Gender %in% genderqueer_syn] <- "genderqueer"
+
+fluid_syn <- c("male leaning androgynous", "male-ish", 
+                   "ostensibly male, unsure what that really means", 
+                   "something kinda male?", "guy (-ish) ^_^")
+df$Gender[df$Gender %in% fluid_syn] <- "fluid"
+
+unknown <- c("a little about you", "all", "p", "nah")
+df$Gender[df$Gender %in% unknown] <- "unknown"
+
+### Let's update some call out issues.   Obvs 967 reported "female" 
+# in the Gender field, but noted being a trans woman in the comments.  
+df$Gender[967] <- "female_trans"
+
+df$Gender <- as.factor(df$Gender)
+table(df$Gender)
+```
+
+## Missing
+
+### Plot and Review Missing
+
+```{r}
+plot_missing(df)
+```
+
+### State
+
+Most of our missing values are for US States.   While it's fine for this to be missing if it's a non-US country, let's make sure that's all that's happening.
+
+```{r}
+#Number of observations that aren't United States
+nrow(df[df$Country != "United States",])
+
+#Number of missing states
+sum(is.na(df$state))
+
+nrow(df[df$Country == "United States" & is.na(df$state),])
+
+# there are 11 missing states.  
+df$state <- as.character(df$state)
+df$state[df$Country == "United States" & is.na(df$state)] <- "Unknown"
+
+# Still some missing:   non-US countries w/ states?!
+sub <- df[df$Country != "United States" & !is.na(df$state),]
+
+knitr::kable(sub[, c("state", "Country")])
+
+# Ok, that's weird.   Let's NA those
+df$state[df$Country != "United States" & !is.na(df$state)] <- NA
+
+df$state <- as.factor(df$state)
+rm(sub)
+```
+
+### Feature Creation: Continent
+
+Since country and state are proving to be non-uniform, let's use the great country code package to create a "continent" feature that may be useful for regression.
+
+```{r}
+df$continent <- as.factor(countrycode(sourcevar = df[, "Country"],
+                                      origin = "country.name",
+                                      destination = "continent"))
+table(df$continent)
+```
+
+### Work Interfere | Self Employed | Age
+
+```{r}
+summary(df[, c("work_interfere", "self_employed", "Age")])
+```
+
+The work_interfere variable is a response to the question: "If you have a mental health condition, do you feel that it interferes with your work?"   I would suggest two possibile interpretations:
+
+1)   "I do not have a mental health condition"
+2)   "I don't want to respond about how my work is affected"
+
+Since the treatment variable is pretty evenly split (No=622/Yes=637) on whether they've sought treatment for a mental health condition, it may not always be option 1.   Since we have no way of knowing which condition is likely, let's simply add a 5th category for "No Response"
+
+```{r}
+df$work_interfere <- as.character(df$work_interfere)
+df$work_interfere[is.na(df$work_interfere)] <- "No Response"
+df$work_interfere <- as.factor(df$work_interfere)
+```
+
+For the remaining two fields, since we will only lose 26 observations, let's simply remove those observations. 
+
+```{r}
+df <- df[!is.na(df$self_employed),]
+df <- df[!is.na(df$Age),]
+```
+
+# EDA
+
+With this, our data is roughly ready for review.   We still have NAs in State and Comments, but if used, both would need to be handled carefully in other ways (eg - State, but subsetting to only US data, Comments to craft some NLP features).  The Timestamp variable may also be easily dropped. 
+
+## Data Summary
+
+```{r, warning=FALSE}
+summary <- describe(df[,c(2:26, 28)])[,c(2:5,8,9,11,12)]
+knitr::kable(summary)
+```
+
+### Histogram of Variables
+
+```{r, warning=FALSE}
+clean <- df
+clean$Timestamp <- NULL
+clean$comments <- NULL
+clean$state <- NULL
+
+out <- split_columns(clean)
+
+plot_histogram(out$continuous)
+plot_bar(out$discrete)
+```
+
+### Relationship of Predictors to Target:  "treatment"
+
+```{r, warning=FALSE}
+plot_scatterplot(clean, "treatment", position = "jitter")
+```
+
+# Cleanup and Save
+
+```{r}
+saveRDS(df, "../Data/MentalHealthCLEAN.rds")
+```
+
+
+
