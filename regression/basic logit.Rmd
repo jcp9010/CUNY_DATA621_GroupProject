@@ -1,0 +1,58 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+df <- readRDS("../Data/MentalHealthCLEAN.rds")
+
+```
+
+
+I am going to drop state from the dataset as moore than 50& of the data is not populated and commetns becasue it is a raw text field
+```{r}
+df = df[,!(names(df) %in% c("state", "comments"))]
+
+```
+
+
+```{r}
+model1 <- glm(seek_help~. , data =df, family=binomial )
+summary(model1)
+
+```
+
+
+```{r}
+model2 <- glm(seek_help~benefits+wellness_program+treatment+anonymity+work_interfere+ care_options+ leave+coworkers+ phys_health_interview , data =df, family=binomial )
+summary(model2)
+
+```
+
+```{r}
+model3 <- glm(seek_help~benefits+wellness_program+anonymity + leave, data =df, family=binomial )
+summary(model3)
+```
+
+
+```{r}
+library(Deducer)
+```
+
+```{r}
+rocplot(model1)
+
+```
+
+```{r}
+
+rocplot(model2)
+```
+
+```{r}
+rocplot(model3)
+
+```
+
+Not Surprising the most imoprtant variables are if someone is going to seek help is if they no the benefits, there is a welness program at work, they can state ananomous and leave is fairly easy.   
