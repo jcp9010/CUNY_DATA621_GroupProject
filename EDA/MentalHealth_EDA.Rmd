@@ -15,12 +15,15 @@ if (!require('psych')) (install.packages('psych'))
 if (!require('DataExplorer')) (install.packages('DataExplorer'))
 if (!require('lubridate')) (install.packages('lubridate'))
 
-df <- read.csv("https://raw.githubusercontent.com/RaphaelNash/CUNY_DATA621_GroupProject/master/Data/survey_RAW.csv")
+url <- paste("https://raw.githubusercontent.com/",
+ "RaphaelNash/CUNY_DATA621_GroupProject/master/Data/survey_RAW.csv",
+ sep="")
+df <- read.csv(url)
 ```
 
 # Data Source
 
-https://www.kaggle.com/osmi/mental-health-in-tech-survey
+The data here is taken from https://www.kaggle.com/osmi/mental-health-in-tech-survey, which in turn was generated from the [Open Sourcing Mental Illness project](https://osmihelp.org/) (OSMI), which describes itself as "a non-profit, 501(c)(3) corporation dedicated to raising awareness, educating, and providing resources to support mental wellness in the tech and open source communities".  OSMI conducted survey-based research in 2014, 2016, and 2017, to collect data about professionals in the open source developer community and research their openness to accessing mental health resources.  The data we're using in this analysis comes from the 2014 survey results.
 
 ### Basic Statistics
 
