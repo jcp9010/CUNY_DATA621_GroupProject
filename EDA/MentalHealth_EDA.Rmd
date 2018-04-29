@@ -8,6 +8,8 @@ output:
     df_print: paged
 ---
 
+## Load Needed Packages
+
 ```{r, message=F, warning=F}
 if (!require('countrycode')) (install.packages('countrycode'))
 if (!require('dplyr')) (install.packages('dplyr'))
@@ -21,13 +23,21 @@ url <- paste("https://raw.githubusercontent.com/",
 df <- read.csv(url)
 ```
 
-# Data Source
+## Data Source
 
-The data here is taken from https://www.kaggle.com/osmi/mental-health-in-tech-survey, which in turn was generated from the [Open Sourcing Mental Illness project](https://osmihelp.org/) (OSMI), which describes itself as "a non-profit, 501(c)(3) corporation dedicated to raising awareness, educating, and providing resources to support mental wellness in the tech and open source communities".  OSMI conducted survey-based research in 2014, 2016, and 2017, to collect data about professionals in the open source developer community and research their openness to accessing mental health resources.  The data we're using in this analysis comes from the 2014 survey results.
+The data here is taken from https://www.kaggle.com/osmi/mental-health-in-tech-survey, which in turn was generated from the [Open Sourcing Mental Illness project](https://osmihelp.org/) (OSMI), which describes itself as "a non-profit, 501(c)(3) corporation dedicated to raising awareness, educating, and providing resources to support mental wellness in the tech and open source communities".  OSMI conducted survey-based research in 2014, 2016, and 2017, to collect data about professionals in the open source developer community and research their openness to accessing mental health resources.  The data we're using in this analysis comes from the 2014 survey results.  Let's take a quick peek at our data to diagnose any prima facie errors or issues.
+
+```{r}
+knitr::kable(head(df[,1:7]))
+knitr::kable(head(df[,8:14]))
+knitr::kable(head(df[,15:19]))
+knitr::kable(head(df[,20:24]))
+knitr::kable(head(df[,25:27]))
+```
 
 ### Basic Statistics
 
-The data is 307.5 Kb in size. There are 1,259 rows and 27 columns (features). Of all 27 columns, 26 are discrete, 1 are continuous, and 0 are all missing. There are 1,892 missing values out of 33,993 data points.
+The data is 307.5 Kb in size. There are 1,259 rows and 27 columns (features). Of all 27 columns, 26 are discrete, 1 is continuous. There are 1,892 missing values out of 33,993 data points.
 
 ## DATA PREPARATION
 
@@ -50,15 +60,22 @@ df$Timestamp <- ymd_hms(df$Timestamp)
 
 ### Age
 
-Our Age variable has some clear and impossible outliers.   There are multiple values < 18 (even some negative numbers) and some values > 200 years old.   Instead of replacing these, for now, let's set to NA and impute later. 
+Our Age variable has some clear and impossible outliers.   There are multiple values < 18 (even some negative numbers) and some values > 200 years old.   Instead of replacing these, for now, let's set to NA and impute later. We'll set the maximum reasonable age at 100, to accommodate any additional data that could potentially be added (e.g. from other years of the same survey).  Our minimum age will be 18, which allows us to know that we're conducting our analyses on adults (for human subjects protections reasons).  We'll remove the age from unrealistic measurements (like -1726 or 329, which are clearly impossible, and 5 or 11, which are too young to be able to be employed), and remove the entire row where the age is between 13 and 17, inclusive.  While there are currently no rows that seem to represent this underage teenager demographic, we add this out of an abundance of caution and to enable code reuse and reproducibility on similar datasets.
 
 ```{r}
-df$Age[df$Age > 73 | df$Age < 18 ] <- NA
+df <- df %>% filter(Age >= 18 | Age < 13 )
+df$Age[df$Age > 100 | df$Age < 18 ] <- NA
 ```
 
 ### Gender
 
-Gender is more complex in this dataset.   Let's start by doing some rough matching and cleaning.
+Let's take a peek at Gender:
+
+```{r}
+table(df$Gender)
+```
+
+Gender is more complex in this dataset.   Let's start by doing some rough matching and cleaning.  We see that there are some typos, some differences in capitalization, some differences in terminology ("woman" vs. "female"), some specifiers ("Cis" / "trans", some non-binary options, and some ambiguous answers.  We'll handle this by consolidating multiple terms into overarching categories and re-assigning common labels to each row.
 
 ```{r}
 df$Gender <- tolower(df$Gender)
@@ -98,7 +115,7 @@ df$Gender <- as.factor(df$Gender)
 table(df$Gender)
 ```
 
-## Missing
+## Missing Data
 
 ### Plot and Review Missing
 
