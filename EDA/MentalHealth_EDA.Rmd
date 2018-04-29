@@ -15,7 +15,7 @@ if (!require('psych')) (install.packages('psych'))
 if (!require('DataExplorer')) (install.packages('DataExplorer'))
 if (!require('lubridate')) (install.packages('lubridate'))
 
-df <- read.csv("../Data/survey_RAW.csv")
+df <- read.csv("https://raw.githubusercontent.com/RaphaelNash/CUNY_DATA621_GroupProject/master/Data/survey_RAW.csv")
 ```
 
 # Data Source
@@ -32,7 +32,7 @@ The data is 307.5 Kb in size. There are 1,259 rows and 27 columns (features). Of
 
 This field is fascinating and ripe for text analysis.   We'll leave it in for now, but it would need to be further prepared for any regression to be done. 
 
-```{r}
+```{r results = 'asis'}
 sample <- df[!(is.na(df$comments)), ]
 head(sample$comments)
 ```
