@@ -1,0 +1,28 @@
+---
+title: "CUNY 621 Final Project Literature Search"
+author: "Joel Park"
+date: "5/1/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Mental Health Literature Research
+
+Reference 1: https://www.nimh.nih.gov/health/statistics/mental-illness.shtml
+Reference 2: Tintinalli Emergency Medicine 6th Edition 2004
+Reference 3: https://www.health.harvard.edu/mind-and-mood/what-causes-depression
+Reference 4: https://osmihelp.org/
+
+Mental illnesses are common in the United States with one in 6 US adults living with a mental illness. These illneses can range in severity to mild to severely impairing the daily activities of living for an individual. The consequences of mental illness can be quite severe and can often involve substance abuse or self-injurious behaviors. There has not been a single person that has not either personally experienced or known someone who has experienced mental illness. 
+
+The Substance Abuse and Mental Health Services Administration had conducted a survey that focused on **any mental illness (AMI)** and **serious mental illness (SMI)**. According to the administration, AMI is "defined as a mental, behavioral, or emotional disorder. AMI can vary in impact, ranging from no impariment to mild, moderate, and even severe impairment (e.g., individuals with serious mental illness)." A SMI is "defined as a mental, behavioral, or emotional disorder resulting in serious functional impairment, which substantially interferes with or limits one or more major life activities. The burden of mental illnesses is particularly concentrated among those who experience disability due to SMI."$^1$
+
+![](https://raw.githubusercontent.com/RaphaelNash/CUNY_DATA621_GroupProject/master/Figures/Figure1.png)
+
+This data from the 2016 survey displays the prevalence rates of mental illneses among US adults. Not surprisingly, all races, genders, and age were affected by mental illness. (Please note that our paper was utilizing data that was collected from the 2014 survey.) This begets a discussion on the morbidity and mortality that is associated with mental illness, specifically suicide. "Suicide ...is a major cause of death throughout the world and a leading cause of death among the young. Aproximately 2 percent of the general population have seriously considered taking their lives and only approximately 1 percent have actually attempted suicide. Suicide thinking is more requent among women than among men and is associated with a clinical depression, social isolation, and undesirable life events." Substance abuse is another unfortunate consequence. Many patients with mental health illnesses often attempt to cope with their struggles by using potentially hazardous and illicit pharmacological agents such as alcohol, narcotics, and benzodiazepines. Abuse of such agents can lead to long term medical health complications thus creating a vicious cycle of mental and physical health issues.$^2$ 
+
+Let us address one of the most common mental health illnesses: depression. The factors that tend to aggravate mental health are the usual suspects, such as isolation, poor social support, prolonged duration and high intensity levels of stress, trauma, and among many other factors.$^3$ Interestingly enough, despite a lengthy search through Google Scholar and Pubmed, there has not been much literature with prevalence rates of mental illnesses in the technology sector. One source, the "Open Sourcing Mental Illness"$^4$ has been conducting surveys and attempting to elucidate this information. They have even provided guidelines on how to address mental illness in their own industry. Since mental illness continues to be an illness with an attached stigma, having resources like this is important. Hopefully, by performing rigorous data analysis and regression, we hope to clarify any underlying patterns that may exist within the mental health realm within the technology sector.
+
