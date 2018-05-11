@@ -54,20 +54,27 @@ Despite a thorough search through Google Scholar and Pubmed, literature is spars
 
 
 # Methodology
+## The Dataset
 
 The data here is taken from https://www.kaggle.com/osmi/mental-health-in-tech-survey, which in turn was generated from the [Open Sourcing Mental Illness project](https://osmihelp.org/) (OSMI), which describes itself as "a non-profit, 501(c)(3) corporation dedicated to raising awareness, educating, and providing resources to support mental wellness in the tech and open source communities".  OSMI conducted survey-based research in 2014, 2016, and 2017, to collect data about professionals in the open source developer community and research their openness to accessing mental health resources.  The data we're using in this analysis comes from the 2014 survey results.  Let's take a quick peek at our data to diagnose any prima facie errors or issues.
 
+## Data Summary
+
 The data is 307.5 Kb in size. There are 1,259 rows and 27 columns (features). Of all 27 columns, 26 are discrete, 1 is continuous. There are 1,892 missing values out of 33,993 data points.
-The comments field is fascinating and ripe for text analysis.   We'll leave it in for now, but it would need to be further prepared for any regression to be done.
-It's likely that the timestamp field will be omitted entirely from analysis, but should someone wish to use it, we'll convert it to the appropriate type.
 
-Our Age variable has some clear and impossible outliers.   There are multiple values < 18 (even some negative numbers) and some values > 200 years old.   Instead of replacing these, for now, let's set to NA and impute later. We'll set the maximum reasonable age at 100, to accommodate any additional data that could potentially be added (e.g. from other years of the same survey).  Our minimum age will be 18, which allows us to know that we're conducting our analyses on adults (for human subjects protections reasons).  We'll remove the age from unrealistic measurements (like -1726 or 329, which are clearly impossible, and 5 or 11, which are too young to be able to be employed), and remove the entire row where the age is between 13 and 17, inclusive.  While there are currently no rows that seem to represent this underage teenager demographic, we add this out of an abundance of caution and to enable code reuse and reproducibility on similar datasets.
+## Independant Variables
 
-Gender is more complex in this dataset.   Let's start by doing some rough matching and cleaning.  We see that there are some typos, some differences in capitalization, some differences in terminology ("woman" vs. "female"), some specifiers ("Cis" / "trans", some non-binary options, and some ambiguous answers.  We'll handle this by consolidating multiple terms into overarching categories and re-assigning common labels to each row.
+While only 13% populated, the comments field is fascinating and ripe for text analysis.   To make useful, the field would need to be further prepared using NLP and features would need to be prepared for any regression to be done.  The timestamp field has been converted to the appropriate object type. 
 
-Most of our missing values are for US States.   While it's fine for this to be missing if it's a non-US country, let's make sure that's all that's happening.
+Our Age variable has some clear and impossible outliers.   There are multiple values < 18 (even some negative numbers) and some values > 200 years old.   Instead of replacing these, we set to NA and reviewed in the imputation process. We'll set the maximum reasonable age at 100, to accommodate any additional data that could potentially be added (e.g. from other years of the same survey).  Our minimum age will be 18, which allows us to know that we're conducting our analyses on adults (for human subjects protections reasons).  We'll remove the age from unrealistic measurements (like -1726 or 329, which are clearly impossible, and 5 or 11, which are too young to be able to be employed), and remove the entire row where the age is between 13 and 17, inclusive.  While there are currently no rows that seem to represent this underage teenager demographic, we add this out of an abundance of caution and to enable code reuse and reproducibility on similar datasets.
 
-Since country and state are proving to be non-uniform, let's use the great country code package to create a "continent" feature that may be useful for regression.
+Gender is more interesting and complex in this dataset.   We trimmed down a very long list of self-reported gender by doing some rough matching and cleaning.  We see that there are some typos, some differences in capitalization, some differences in terminology ("woman" vs. "female"), some specifiers ("Cis" / "trans", some non-binary options, and some ambiguous answers.  We'll handle this by consolidating multiple terms into overarching categories and re-assigning common labels to each row.
+
+## NA Handling
+
+We have five variables with NAs - comments, state, work_interfere, self_employed, and age.   As noted earlier, without further feature creation, we'll exclude the comments variable entirely.  
+
+Most of our missing values are for US States.   While it's fine for this to be missing if it's a non-US country, we conducted an additional study that showed that while that was mostly happening, there were also some additional issues that needed to be fixed.   This included having states associated with non-US countries (eg - Latvia, NY or Israel, MD).  In addition, since country and state were proving to be non-uniform, we leveraged the great country code R package to create a "continent" feature that can easily be included in the regression.
 
 The work_interfere variable is a response to the question: "If you have a mental health condition, do you feel that it interferes with your work?"   I would suggest two possibile interpretations:
 
@@ -76,9 +83,13 @@ The work_interfere variable is a response to the question: "If you have a mental
 
 Since the treatment variable is pretty evenly split (No=622/Yes=637) on whether they've sought treatment for a mental health condition, it may not always be option 1.   Since we have no way of knowing which condition is likely, let's simply add a 5th category for "No Response"
 
-For the remaining two fields (self_employed and age), since we will only lose 26 observations, let's simply remove those observations.
+For the remaining two fields (self_employed and age), since we will only lose 26 observations, let's simply remove those observations.  With this, our data is roughly ready for experimentation and modeling.   
 
-With this, our data is roughly ready for review.   We still have NAs in State and Comments, but if used, both would need to be handled carefully in other ways (eg - State, but subsetting to only US data, Comments to craft some NLP features).  The Timestamp variable may also be easily dropped.
+### Data Overview
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('../Figures/DataSummary.png')
+```
 
 # Experimentation and Model Building
 ## Model building
