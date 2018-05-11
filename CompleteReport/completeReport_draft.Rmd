@@ -3,8 +3,12 @@ title: "Mental Health Attitudes and Work"
 author: "Andrew Carson, Raphael Nash, Joel Park, Joy Payton, Walt Wells"
 date: "May 25, 2018"
 output:
-  word_document: default
-  pdf_document: default
+  word_document: 
+    toc: TRUE
+    toc_depth: 4
+  pdf_document: 
+    toc: TRUE
+    toc_depth: 4
 ---
 
 # Abstract
@@ -104,9 +108,9 @@ Right off the at we will drop the field state from the dataset, since over 50% o
 
 ## Model 1 
 
-This model will predict mental if someone will seek mental health care based on all of the variables in the dataset with the exception of state.  
+This model will predict mental if someone will seek mental health care based on all other variables in the dataset with the exception of `state`.  
 
-Here are the coefficents of this model: Coefficients: (4 not defined because of singularities)
+Here are the coefficents of this model.  Note that some colinearity of variables causes matrix singularities and corresponding NA values in the table for four variables.
 
 |         Variable             |Estimate |Std. Error |z value |Pr(>\|z\|)   
 |------------------------------|---------|-----------|--------|---------- 
@@ -217,7 +221,7 @@ The AIC of the Model is 1115.3 and the area under the ROC curve is .9256
 
 ## Model 2
 
-To build this model we are going to start with model1 and drop all of the variables that have a p-value of greater than .1.  The variables for this model are:  Age, Gender, work_interfere (amount of work interference of the mental health issue)  + family_history (If the person has a family history of mental health issues) , benefits (employer provides mental health benefits),  care_options (if the person know the care options) , anonymity (if the person can stay anonymous), coworkers ( If the person has coworkers they can talk to)  
+To build this model we are going to start with model1 and drop all of the variables that have a p-value of greater than .1.  The variables for this model are:  `Age`, `Gender`, `work_interfere` (amount of work interference of the mental health issue), `family_history` (whether the person has a family history of mental health issues), `benefits` (whether the employer provides mental health benefits),  `care_options` (whether the person knows about care options), `anonymity` (whether the person can stay anonymous), and `coworkers` (whether the person has coworkers they can talk to).
 
 The coefficients for this model are:  
 
@@ -250,7 +254,7 @@ The AIC is 1225 and the area under the curve is .7959
 
 ## Model 3
 
-For model 3, I am going to take the variables with a pvalue of .1 or higher from model1 and use them to predict if an employee will seek treatment.  They are the amount of interference from work that the issue causes, employer provides mental health benefits, know the care options, and stay anonymous.  
+For model 3, we take the variables with a pvalue of .1 or higher from model1 and use them to predict if an employee will seek treatment.  These variables include are the amount of interference from work that the issue causes (`work_interfere`), employer provides mental health benefits (`benefits`), know the care options (`care_options`), and stay anonymous (`anonymity`).  
 
 The coeffecients of this model are: 
 
@@ -274,13 +278,14 @@ The coeffecients of this model are:
 The AIC is   1214.9 and the Area under the curve is  .7912
 
 ## Summary of Results
+
 There is not much difference between model 2 and model 3.  Model 1 the model with all the variables is the best model as it has the lowest AIC and the highest area under the curve.  Therefore, this is a very well-designed survey for predicting if a person is going to seek mental health care.  Also if you are an employer and you want to encourage you employees to seek mental health care the things you can do are the following
 1)	Provide Benefits
 2)	Make sure the person knows the care options
 3)	Make sure the person can stay anonymous
 Also the most personally influential factor if someone is going to seek help is if the mental illness interferes with work.  
 
-The biggest surprise in the data, is that if the employer provides resource or a wellness program they do not predict very well if the person is going to seek treatment.  This is probably because people want to stay anonymous if the seek mental health treatment.  
+The biggest surprise in the data, is that if the employer provides resource or a wellness program they do not predict very well if the person is going to seek treatment.  We surmise that is probably because people want to stay anonymous if the seek mental health treatment.  
 
 # Final Discussion and Conclusions
 
