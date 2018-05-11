@@ -437,11 +437,28 @@ rocplot(model3)
 
 # References
 
-  * Mental Illness. National Institute of Mental Health, U.S. Department of Health and Human Services, Nov. 2017, www.nimh.nih.gov/health/statistics/mental-illness.shtml.
-  * Psychosocial Disorders.Emergency Medicine Manual, Sixth Edition, by O. John. Ma and David Cline, McGraw-Hill, Medical Pub. Division, 2004, pp. 1807 - 1816.
-  * Harvard Health Publishing. What Causes Depression? - Harvard Health.? Harvard Health Blog, 17 Apr. 2017, www.health.harvard.edu/mind-and-mood/what-causes-depression.
-  * Evans, Judith, et al. Mental Illness Flourishes in High-Pressure Workplace. Financial Times, Financial Times, 14 Sept. 2016, www.ft.com/content/d4168a70-4533-11e6-9b66-0712b3873ae1.
-  * OSMI Home Open Sourcing Mental Illness - Changing How We Talk about Mental Health in the Tech Community - Stronger Than Fear, osmihelp.org/.
+Evens, J., et al. (2016).  Mental Illness Flourishes in High-Pressure Workplace. _Financial Times._  Retrieved from http://www.ft.com/content/d4168a70-4533-11e6-9b66-0712b3873ae1.
+
+Harvard Health Publishing (2017). What Causes Depression.  _Harvard Health Blog_. Retrieved from www.health.harvard.edu/mind-and-mood/what-causes-depression.
+
+International Labour Organisation (Gabriel, P., Riitta Liimatainen, M.) (2000).  _Mental Health in the Workplace: Introduction: Executive Summary_.  Retrieved from http://www.ilo.org/skills/pubs/WCMS_108221/lang--en/index.htm.
+
+Kessler, R. C., Aguilar-Gaxiola, S., Alonso, J., Chatterji, S., Lee, S., Ormel, J., ...  Wang, P. S. (2009). The global burden of mental disorders: An update from the WHO World Mental Health (WMH) Surveys. _Epidemiologia E Psichiatria Sociale_, 18(1), 23–33. https://doi.org/10.1017/s1121189x00001421
+
+Ma, J. O. & Cline, D. (2004). _Emergency medicine manual_. New York: McGraw-Hill, Medical Pub. Division.
+
+Memish, K., Martin, A., Bartlett, L., Dawkins, S., & Sanderson, K. (2017). Workplace mental health: An international review of guidelines. _Preventive Medicine_, 101, 213–222. https://doi.org/10.1016/j.ypmed.2017.03.017
+
+Milligan-Saville, J. S., Tan, L., Gayed, A., Barnes, C., Madan, I., Dobson, M., ... Harvey, S. B. (2017). Workplace mental health training for managers and its effect on sick leave in employees: a cluster randomised controlled trial. _The Lancet Psychiatry_, 4(11), 850–858. https://doi.org/10.1016/s2215-0366(17)30372-3.
+
+National Institute of Mental Health, U.S. Department of Health and Human Services (2017).  _Mental Health_. Retrieved from www.nimh.nih.gov/health/statistics/mental-illness.shtml.
+
+Open Sourcing Mental Illness (2017).  Retrieved from http://osmihelp.org.
+
+Organisation for Economic Cooperation and Development (OECD). Employment Outlook 2013.  OECD Publishing, Paris. Retrieved from http://www.oecd-ilibrary.org.remote.baruch.cuny.edu/employment/oecd-employment-outlook-2013_empl_outlook-2013-en.
+
+Page, K. M., LaMontagne, A. D., Louie, A. M., Ostry, A. S., Shaw, A., & Shoveller, J. A. (2013). Stakeholder perceptions of job stress in an industrialized country: Implications for policy and practice. Journal of Public Health Policy, 34(3), 447–461. https://doi.org/10.1057/jphp.2013.24
+
   * https://osmihelp.org/about/about-osmi
   * https://osmihelp.org/research
   * https://www.kaggle.com/osmi/mental-health-in-tech-2016
