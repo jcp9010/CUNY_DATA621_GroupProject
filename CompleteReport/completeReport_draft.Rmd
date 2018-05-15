@@ -25,9 +25,9 @@ Open Sourcing Mental Illness (OSMI) is a non-profit organization that focuses on
 
 As part of Finkler's research,  several surveys have been conducted relating to mental health in the technology sector.  A 2014 survey had 1200 responses and focused generally on mental health in the tech industry, while a revised 2016 survey had 1400 responses and focused on "attitudes towards mental health in the tech workplace" (Open Sourcing Mental Illness, 2018).  At the time of this writing, a 2017 survey was still in progress.
 
-Given Finkler's desire to foster an open discussion about mental illness in the workplace, the raw survey data mentioned above is freely available for download.  Our team elected to use the most recent complete data, the 2016 survey data, for conducting our analysis.  It can be downloaded from an associated Kaggle site (https://www.kaggle.com/osmi/mental-health-in-tech-2016) or directly from the OSMI website.  
+Given Finkler's desire to foster an open discussion about mental illness in the workplace, the raw survey data mentioned above is freely available for download.  Our team elected to use the most recent complete data, the 2016 survey data, for conducting our analysis.  It can be downloaded from an associated Kaggle site (OSMI Mental Health in Tech Survey 2016, 2018) or directly from the OSMI website.  
 
-In addition to the data itself, OSMI has informational materials about workplace stressors, mental illness, and mental healh related costs.  Some of the data OSMI provides include the following information, which includes facts about their own data as well as about the scope of the impact of mental illness in the workplace. 
+In addition to the data itself, OSMI has informational materials about workplace stressors, mental illness, and mental healh related costs.  Some of the data OSMI provides include the following information, which includes facts about their own data as well as about the scope of the impact of mental illness in the workplace (Talks & Videos, 2018):
 
   * About 1 in 5 people experience mental illness in population at large
   * 60% of 1400 respondents to survey had sought treatment for mental health conditions
@@ -38,7 +38,7 @@ In addition to the data itself, OSMI has informational materials about workplace
   * More days of work are lost due to mental illness than other chronic conditions like asthma, arthritis, back pain, diabetes, heart disease, and hypertension
   * Over 70% of costs associated with mental illness are found in indirect costs of absenteeism, presenteism (at work but not full productive), turnover, and training costs for replacing workers.
   
-Why does this matter?  To quote, "employees work harder when they are happy, and happy employees leads to less turnover, which ensures that operations run more smoothly" (https://osmihelp.org/talks).  That is, there is a strong business case for addressing mental health in the workplace and providing support and medical care to those suffering from mental illness.  Such care and support creates a more productive and positive environment, and ultimately helps a company save on costs.
+Why does this matter?  To quote, "employees work harder when they are happy, and happy employees leads to less turnover, which ensures that operations run more smoothly" (Talks & Videos, 2018).  That is, there is a strong business case for addressing mental health in the workplace and providing support and medical care to those suffering from mental illness.  Such care and support creates a more productive and positive environment, and ultimately helps a company save on costs.
 
 
 # Literature Review
@@ -60,11 +60,16 @@ Despite a thorough search through Google Scholar and Pubmed, literature is spars
 # Methodology
 ## The Dataset
 
-The data here is taken from https://www.kaggle.com/osmi/mental-health-in-tech-survey, which in turn was generated from the [Open Sourcing Mental Illness project](https://osmihelp.org/) (OSMI), which describes itself as "a non-profit, 501(c)(3) corporation dedicated to raising awareness, educating, and providing resources to support mental wellness in the tech and open source communities".  OSMI conducted survey-based research in 2014, 2016, and 2017, to collect data about professionals in the open source developer community and research their openness to accessing mental health resources.  The data we're using in this analysis comes from the 2014 survey results.  Let's take a quick peek at our data to diagnose any prima facie errors or issues.
+The data here is taken from https://www.kaggle.com/osmi/mental-health-in-tech-survey, which in turn was generated from the [Open Sourcing Mental Illness project](https://osmihelp.org/) (OSMI), which describes itself as "a non-profit, 501(c)(3) corporation dedicated to raising awareness, educating, and providing resources to support mental wellness in the tech and open source communities".  OSMI conducted survey-based research in 2014, 2016, and 2017, to collect data about professionals in the open source developer community and research their openness to accessing mental health resources.  The data we're using in this analysis comes from the 2016 survey results.  
+
+## Limitations of the Data
+
+Before beginning the analysis, it should be noted that the data has limitations for scientific analysis.  The survey data was collected anonymously without identifying information.  As such, it relies on the honest reporting of respondents and cannot be verified for accuracy.  It was offered in English only and may exclude non-native English speakers through self-exclusion.  There was no tracking of the population, and a respondent could have answered multiple times.  Other self selection likely occured (e.g., North American, interested in and engaged in mental health topics) and as such, it is difficult to know what biases in the population exist.  Finally, the information about the employers comes from the employees filling out the survey and may be innaccurate from the perspective of the employer.  Consequently, given these limitations in the data, any results derived from studying the survey must be held tentatively and applied only to those who in fact responded to the survey.  Application to the tech community in general must be done so with great caution.
+
 
 ## Data Summary
 
-The data is 307.5 Kb in size. There are 1,259 rows and 27 columns (features). Of all 27 columns, 26 are discrete, 1 is continuous. There are 1,892 missing values out of 33,993 data points.
+Let's take a quick peek at our data to diagnose any prima facie errors or issues.  The data is 307.5 Kb in size. There are 1,259 rows and 27 columns (features). Of all 27 columns, 26 are discrete, 1 is continuous. There are 1,892 missing values out of 33,993 data points.
 
 ## Independent Variables
 
@@ -289,6 +294,9 @@ The biggest surprise in the data, is that if the employer provides resource or a
 
 # Final Discussion and Conclusions
 
+
+
+
 # Figures
 
 See word document
@@ -437,6 +445,8 @@ rocplot(model3)
 
 # References
 
+About OSMI (2017).  Retrieved from https://osmihelp.org/about/about-osmi.
+
 Evens, J., et al. (2016).  Mental Illness Flourishes in High-Pressure Workplace. _Financial Times._  Retrieved from http://www.ft.com/content/d4168a70-4533-11e6-9b66-0712b3873ae1.
 
 Harvard Health Publishing (2017). What Causes Depression.  _Harvard Health Blog_. Retrieved from www.health.harvard.edu/mind-and-mood/what-causes-depression.
@@ -457,11 +467,13 @@ Open Sourcing Mental Illness (2017).  Retrieved from http://osmihelp.org.
 
 Organisation for Economic Cooperation and Development (OECD). Employment Outlook 2013.  OECD Publishing, Paris. Retrieved from http://www.oecd-ilibrary.org.remote.baruch.cuny.edu/employment/oecd-employment-outlook-2013_empl_outlook-2013-en.
 
+OSMI Mental Health in Tech Survey 2016 (2017).  Retrieved from https://www.kaggle.com/osmi/mental-health-in-tech-2016.
+
 Page, K. M., LaMontagne, A. D., Louie, A. M., Ostry, A. S., Shaw, A., & Shoveller, J. A. (2013). Stakeholder perceptions of job stress in an industrialized country: Implications for policy and practice. Journal of Public Health Policy, 34(3), 447–461. https://doi.org/10.1057/jphp.2013.24
 
-  * https://osmihelp.org/about/about-osmi
-  * https://osmihelp.org/research
-  * https://www.kaggle.com/osmi/mental-health-in-tech-2016
-  * https://osmihelp.org/talks
+Research (2017).  Retrieved from https://osmihelp.org/research.
+
+Talks & Videos (2017).  Retrieved from https://osmihelp.org/talks.
+
 
 
