@@ -3,17 +3,17 @@ title: "Mental Health Attitudes and Work"
 author: "Andrew Carson, Raphael Nash, Joel Park, Joy Payton, Walt Wells"
 date: "May 25, 2018"
 output:
-  word_document: 
-    toc: TRUE
+  word_document:
+    toc: yes
     toc_depth: 4
-  pdf_document: 
-    toc: TRUE
+  pdf_document:
+    toc: yes
     toc_depth: 4
 ---
 
 # Abstract
 
-Mental illness is a complex set of interrelated conditions that are gaining increasing awareness and acceptance as a legitimate health issue of interest to employers.  One organization, Open Sourcing Mental Illness, is focusing particularly on mental illness in the information worker community in the technological sector, particularly in the open source community.  In 2016, it administered a survey to 1400 respondents from the tech community that addressed a wide variety of questions about mental health, employment benefits and offerings, personal and perceived workplace attitudes in regard to mental health, and other demographic and related information.  Our team used this data set for our project.  After cleanup and transformation of variables, we built a model to predict whether an individual would seek professional mental health services using data submitted in the survey.  We built several models with differing sets of variables, but noted several important commonalities among successful models that were influential in predicting the seeking of professional mental health help.  In particular, an individual was more likely to seek help if their employer offered mental health benefits, if the employee was well informed about the options offered by the employer for treatment, if anonymity could be maintained when using mental health or substance abuse treatment resources, and if the employee believed mental health to be negatively affecting work productivity.  However, due to data limitations, such results should be applied to the tech community at large only with great caution.  More research is needed to confirm these results.
+Mental illness is a complex set of interrelated conditions that are gaining increasing awareness and acceptance as a legitimate health issue of interest to employers.  One organization, Open Sourcing Mental Illness, is focusing particularly on mental illness in the information worker community in the technological sector, particularly in the open source community.  In 2016, it administered a survey to 1400 respondents from the tech community that addressed a wide variety of questions about mental health, employment benefits and offerings, personal and perceived workplace attitudes in regard to mental health, and other demographic and related information.  Our team used this data set for our project.  After cleanup and transformation of variables, we built a model to predict whether an individual would seek professional mental health services using data submitted in the survey.  We built several models with differing sets of variables, but noted several important commonalities among successful models that were influential in predicting the seeking of professional mental health treatment.  In particular, an individual was more likely to seek treatment if their employer offered mental health benefits, if the employee was well informed about the options offered by the employer for treatment, if anonymity could be maintained when using mental health or substance abuse treatment resources, and if the employee believed mental health to be negatively affecting work productivity.  However, due to data limitations, such results should be applied to the tech community at large only with great caution.  More research is needed to confirm these results.
 
 # Keywords
 
@@ -27,7 +27,7 @@ As part of Finkler's research,  several surveys have been conducted relating to 
 
 Given Finkler's desire to foster an open discussion about mental illness in the workplace, the raw survey data mentioned above is freely available for download.  Our team elected to use the most recent complete data, the 2016 survey data, for conducting our analysis.  It can be downloaded from an associated Kaggle site (OSMI Mental Health in Tech Survey 2016, 2018) or directly from the OSMI website.  
 
-In addition to the data itself, OSMI has informational materials about workplace stressors, mental illness, and mental healh related costs.  Some of the data OSMI provides include the following information, which includes facts about their own data as well as about the scope of the impact of mental illness in the workplace (Talks & Videos, 2018):
+In addition to the data itself, OSMI has informational materials about workplace stressors, mental illness, and mental heal related costs.  Some of the data OSMI provides include the following information, which includes facts about their own data as well as about the scope of the impact of mental illness in the workplace (Talks & Videos, 2018):
 
   * About 1 in 5 people experience mental illness in the population at large
   * 60% of 1400 respondents to the survey had sought treatment for mental health conditions
@@ -51,7 +51,7 @@ Data from the 2016 SAMSHA survey includes the prevalence rates of mental illness
 
 The serious impact of mental health disorders brings us to consider the topic of mental illness related mortality, specifically suicide and premature death caused by self-harm.  The majority of suicide deaths are attributable to depression, one of the most prevalent and fastest growing mental illnesses (International Labour Association, 2000).  Substance abuse is another costly and devastating consequence. Many individuals with mental health illnesses may attempt to cope with their struggles by using potentially hazardous and illicit pharmacological agents such as alcohol, narcotics, and benzodiazepines. Abuse of such agents can lead to long term medical health complications thus creating a vicious cycle of mental and physical health issues (Ma 2004).
 
-Factors known to aggravate mental health include isolation, poor social support, burnout,	 and prolonged duration and high intensity levels of stress or trauma (Harvard Health Publishing 2017).  Perhaps unsurprisingly, high-stress career fields such as first responders and employees working rapidly changing, globalized sectors including those in the technology sector may tend to worsen mental health (Evans 2016, International Labour Association, 2000).   However, many individuals experiencing mental health struggles may feel pressured to not seek care or report their mental illnesses, as they may be afraid of being stigmatized, and as a result, mental illness in this workplace may likely be underreported, hidden, or kept secret, either at the time of experiencing symptoms or at a later date, such as returning to work after illness-related time off (International Labour Association, 2000).  
+Factors known to aggravate mental health include isolation, poor social support, burnout,	 and prolonged duration and high intensity levels of stress or trauma (Harvard Health Publishing 2017).  Perhaps unsurprisingly, high-stress career fields such as first responders and employees working rapidly changing, globalized sectors including those in the technology sector may tend to worsen mental health (Evans 2016, International Labour Association, 2000).   However, many individuals experiencing mental health struggles may feel pressured to not seek care or report their mental illnesses, as they may be afraid of being stigmatized, and as a result, mental illness in this workplace may likely be under reported, hidden, or kept secret, either at the time of experiencing symptoms or at a later date, such as returning to work after illness-related time off (International Labour Association, 2000).  
 
 Despite a thorough search through Google Scholar and Pubmed, literature is sparse regarding mental health prevalence rates within the technology sector. One source, the Open Sourcing Mental Illness organization, has conducted surveys and attempted to collect and disseminate this information. By using this information, the authors have hoped to use preliminary information to analyze mental health influencers and produce more research in this ill-defined field. By performing rigorous data analysis and regression, we, as data scientists, hope to clarify any underlying patterns that exist in mental health illnesses within the technology industry.
 
@@ -64,7 +64,7 @@ The data here is taken from https://www.kaggle.com/osmi/mental-health-in-tech-su
 
 ## Limitations of the Data
 
-Before beginning the analysis, it should be noted that the data has limitations for scientific analysis.  The survey data was collected anonymously without identifying information.  As such, it relies on the honest reporting of respondents and cannot be verified for accuracy.  It was offered in English only and may exclude non-native English speakers through self-exclusion.  There was no tracking of the population, and a respondent could have answered multiple times.  Other self selection likely occured (e.g., North American, interested in and engaged in mental health topics) and as such, it is difficult to know what biases in the sample exist relative to the population of tech employees.  Finally, the information in the survey about the employers comes from the employees filling out the survey and may be innaccurate from the perspective of the employer.  Consequently, given these limitations in the data, any results derived from studying the survey must be held tentatively and applied only to those who in fact responded to the survey.  Application to the tech community in general must be done so with great caution, and further research is needed in order to generalize these results.
+Before beginning the analysis, it should be noted that the data has limitations for scientific analysis.  The survey data was collected anonymously without identifying information.  As such, it relies on the honest reporting of respondents and cannot be verified for accuracy.  It was offered in English only and may exclude non-native English speakers through self-exclusion.  There was no tracking of the population, and a respondent could have answered multiple times.  Other self selection likely occurred (e.g., North American, interested in and engaged in mental health topics) and as such, it is difficult to know what biases in the sample exist relative to the population of tech employees.  Finally, the information in the survey about the employers comes from the employees filling out the survey and may be inaccurate from the perspective of the employer.  Consequently, given these limitations in the data, any results derived from studying the survey must be held tentatively and applied only to those who in fact responded to the survey.  Application to the tech community in general must be done so with great caution, and further research is needed in order to generalize these results.
 
 
 ## Data Summary
@@ -85,7 +85,7 @@ We have five variables with NAs - comments, state, work_interfere, self_employed
 
 Most of our missing values are for US States.   While it's fine for this to be missing if it's a non-US country, we conducted an additional study that showed that while that was mostly happening, there were also some additional issues that needed to be fixed.   This included having states associated with non-US countries (eg - Latvia, NY or Israel, MD).  In addition, since country and state were proving to be non-uniform, we leveraged the great country code R package to create a "continent" feature that can easily be included in the regression.
 
-The work_interfere variable is a response to the question: "If you have a mental health condition, do you feel that it interferes with your work?"   I would suggest two possibile interpretations:
+The work_interfere variable is a response to the question: "If you have a mental health condition, do you feel that it interferes with your work?"   I would suggest two possible interpretations:
 
 1)   "I do not have a mental health condition"
 2)   "I don't want to respond about how my work is affected"
@@ -109,7 +109,7 @@ To begin, we will drop the 'state' field from the dataset, since over 50% of the
 
 This model will predict if someone will seek mental health care based on all other variables in the dataset with the exception of `state`.  
 
-Here are the coefficents of this model.  Note that some colinearity of variables causes matrix singularities and corresponding NA values in the table for four variables.
+Here are the coefficients of this model.  Note that some colinearity of variables causes matrix singularities and corresponding NA values in the table for four variables.
 
 |         Variable             |Estimate |Std. Error |z value |Pr(>\|z\|)   
 |------------------------------|---------|-----------|--------|---------- 
@@ -226,54 +226,50 @@ The coefficients for this model are:
 
 |         Variable             |Estimate |Std. Error |z value |Pr(>|z|)   
 |------------------------------|---------|-----------|--------|---------- 
- Coefficients:
- Estimate Std. Error z value Pr(>|z|)
- (Intercept) -2.86067 0.51261 -5.581 2.40e-08 ***
- Age 0.02308 0.01142 2.021 0.043305 *
- Genderfemale_trans -0.51100 1.16244 -0.440 0.660233
- Genderfluid -0.68534 1.23932 -0.553 0.580264
- Gendergenderqueer 0.65882 1.10910 0.594 0.552502
- Gendermale_cis -0.75196 0.22689 -3.314 0.000919 ***
- Genderunknown 10.71894 535.41126 0.020 0.984027
- family_historyYes 0.98156 0.17544 5.595 2.21e-08 ***
- work_interfereNo Response -2.35093 0.55073 -4.269 1.97e-05 ***
- work_interfereOften 3.38019 0.33485 10.095 < 2e-16 ***
- work_interfereRarely 2.44761 0.28372 8.627 < 2e-16 ***
- work_interfereSometimes 2.82398 0.24920 11.332 < 2e-16 ***
- benefitsNo -0.06002 0.23089 -0.260 0.794915
- benefitsYes 0.48226 0.24500 1.968 0.049027 *
- care_optionsNot sure -0.15089 0.22230 -0.679 0.497299
- care_optionsYes 0.53490 0.22423 2.385 0.017056 *
- anonymityNo -0.02996 0.36986 -0.081 0.935449
- anonymityYes 0.30273 0.21200 1.428 0.153297
- coworkersSome of them 0.21571 0.20477 1.053 0.292147
- coworkersYes 0.84316 0.28387 2.970 0.002975 **
+|(Intercept)                  | -2.86067  | 0.51261 | -5.581  | 2.40e-08 ***
+|Age                          |0.02308    |0.01142  |2.021    |0.043305 *
+|Genderfemale_trans           |-0.51100   |1.16244  |-0.440   |0.660233
+|Genderfluid                  |-0.68534   |1.23932  |-0.553   |0.580264
+|Gendergenderqueer            |0.65882    |1.10910  | 0.594   | 0.552502
+|Gendermale_cis               |-0.75196   | 0.22689 | -3.314  | 0.000919 ***
+|Genderunknown                |10.71894   |535.41126 |0.020   |0.984027
+|family_historyYes            |0.98156    |0.17544  |5.595    |2.21e-08 ***
+|work_interfereNo Response    |-2.35093   |0.55073 |-4.269    |1.97e-05 ***
+|work_interfereOften          |3.38019    |0.33485  |10.095   |< 2e-16 ***
+|work_interfereRarely         |2.44761    |0.28372  |8.627    |< 2e-16 ***
+|work_interfereSometimes      |2.82398    |0.24920 |11.332    |< 2e-16 ***
+|benefitsNo                   |-0.06002   |0.23089 |-0.260    |0.794915
+|benefitsYes                  |0.48226    |0.24500 |1.968     |0.049027 *
+|care_optionsNot sure         |-0.15089   |0.22230 |-0.679    |0.497299
+|care_optionsYes              |0.53490    |0.22423 |2.385     |0.017056 *
+|anonymityNo                  |-0.02996   |0.36986 |-0.081    | 0.935449
+|anonymityYes                  |0.30273   |0.21200 |1.428     |0.153297
+|coworkersSome of them        |0.21571    |0.20477 |1.053     |0.292147
+|coworkersYes                  |0.84316   |0.28387 |2.970     |0.002975 **
 
 
 The AIC is 953 and the area under the curve is .0.91
 
 ## Model 3
 
-For model 3, we take the variables with a pvalue of 0.1 or higher from model1 and use them to predict if an employee will seek treatment.  These variables include are the amount of interference from work that the issue causes (`work_interfere`), employer provides mental health benefits (`benefits`), know the care options (`care_options`), and stay anonymous (`anonymity`).  
+For model 3, we take the variables with a p-value of 0.1 or higher from model1 and use them to predict if an employee will seek treatment.  These variables include are the amount of interference from work that the issue causes (`work_interfere`), employer provides mental health benefits (`benefits`), know the care options (`care_options`), and stay anonymous (`anonymity`).  
 
-The coeffecients of this model are: 
+The coefficients of this model are: 
 
 
 |         Variable             |Estimate |Std. Error |z value |Pr(>|z|)   
 |------------------------------|---------|-----------|--------|----------    
- Coefficients:
- Estimate Std. Error z value Pr(>|z|)
- (Intercept) -2.2549 0.2625 -8.592 < 2e-16 ***
- work_interfereNo Response -2.3615 0.5453 -4.331 1.49e-05 ***
- work_interfereOften 3.5817 0.3206 11.173 < 2e-16 ***
- work_interfereRarely 2.6143 0.2705 9.665 < 2e-16 ***
- work_interfereSometimes 3.0312 0.2372 12.779 < 2e-16 ***
- benefitsNo -0.1679 0.2202 -0.763 0.44565
- benefitsYes 0.6218 0.2323 2.677 0.00743 **
- care_optionsNot sure -0.1033 0.2127 -0.486 0.62703
- care_optionsYes 0.5672 0.2156 2.631 0.00852 **
- anonymityNo -0.0199 0.3481 -0.057 0.95440
- anonymityYes 0.3432 0.2028 1.692 0.09056 .
+|(Intercept)                    |-2.2549  |0.2625   |-8.592   |< 2e-16 ***
+|work_interfereNo Response      |-2.3615   |0.5453   |-4.331   |1.49e-05 ***
+|work_interfereOften             |3.5817   |0.3206   |11.173   |< 2e-16 ***
+|work_interfereRarely            |2.6143   |0.2705   |9.665   |< 2e-16 ***
+|work_interfereSometimes         |3.0312   |0.2372   |12.779   |< 2e-16 ***
+|benefitsNo                     |-0.1679   |0.2202   |-0.763   |0.44565
+|benefitsYes                    | 0.6218   |0.2323   |2.677   |0.00743 **
+|care_optionsNot sure           |-0.1033   |0.2127   |-0.486   |0.62703
+|care_optionsYes                |0.5672   |0.2156   |2.631   |0.00852 **
+|anonymityNo                    |-0.0199   |0.3481   |-0.057   |0.95440
+|anonymityYes                   |0.3432   |0.2028   |1.692   |0.09056 .
  
 
 
@@ -297,9 +293,9 @@ The biggest surprise in the data, is that if the employer provides resource or a
 
 # Final Discussion and Conclusions
 
-In each model, the significant variables align with our expectations.  If work interferes at all (and especially often), this positively correlates with obtaining treatment whereas "no response" correlates negatively with treatment.  Clearly, if the illness is impacting one's life negatively, one will be more inclined to receive treatment.  Having a family history of mental illness is positively correlated with obtaining treatment.  Likely, one will be more aware of mental illness or more accepting of it as a legitimate health concern. Having benefits provided by the employer makes one more likely to have treatment, as one will likely not need to pay as much for treatment and so there is a lower barrier to treatment.  Similarly, having care options makes one more likely to obtain treatment.  Anonymity is positively correlated while no anonymity is negatively correlated, as we would expect if people are embarrased, ashamed, or otherwise disinclined to make their mental illness known to others, and seeking treatment would make this illness known.  Knowing coworkers that have the same struggle also positively correlates with treatment, as perhaps this is already an environment where people are more aware of mental illness and accepting of it.
+In each model, the significant variables align with our expectations.  If work interferes at all (and especially often), this positively correlates with obtaining treatment whereas "no response" correlates negatively with treatment.  Clearly, if the illness is impacting one's life negatively, one will be more inclined to receive treatment.  Having a family history of mental illness is positively correlated with obtaining treatment.  Likely, one will be more aware of mental illness or more accepting of it as a legitimate health concern. Having benefits provided by the employer makes one more likely to have treatment, as one will likely not need to pay as much for treatment and so there is a lower barrier to treatment.  Similarly, having care options makes one more likely to obtain treatment.  Anonymity is positively correlated while no anonymity is negatively correlated, as we would expect if people are embarrassed, ashamed, or otherwise disinclined to make their mental illness known to others, and seeking treatment would make this illness known.  Knowing coworkers that have the same struggle also positively correlates with treatment, as perhaps this is already an environment where people are more aware of mental illness and accepting of it.
 
-As the insignificant variables are removed, the coefficients do not change significantly, suggesting that we have captured the signal in the data for predicting whether an employee will seek treatment.  And while Model1 certainly does the best job at explaining and predicting with a deviance R^2 of 0.51, it is not much better than the other models.  Model2 has a deviance R^2 of  0.46, and Model3 has a deviance R^2 of 0.43.  
+As the insignificant variables are removed, the coefficients do not change significantly, suggesting that we have captured the signal in the data for predicting whether an employee will seek treatment.  And while Model1 certainly does the best job at explaining and predicting with a deviance R^2 of 0.51, it is not much better than the other models.  Model2 has a deviance R^2 of  0.46, and Model3 has a deviance R^2 of 0.43.  As mentioned above, Model2 seems to balanced predictability and simplicity the best.
 
 We have already noted many limitations in the data, the method of collection, and so forth.  However, there does appear to be some insights that can be gathered from the data as mentioned above.  As such, for conclusions that are more robust and can generalize broadly, further research is needed that address the limitations.  In particular, a more scientific study should be conducted across the tech sector using more observations, random sampling techniques, and so forth.  We expect that this would yield similar findings about why employees seek treatment versus not (benefits, care options, anonymity, work interference), but these results could be applied broadly and would not be subject to the limitations of the existing data set.  We certainly do hope that steps towards such research are being made.
 
