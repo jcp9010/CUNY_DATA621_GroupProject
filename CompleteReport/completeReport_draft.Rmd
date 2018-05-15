@@ -13,7 +13,7 @@ output:
 
 # Abstract
 
-Mental illness is a complex set of interrelated conditions that are gaining increasing awareness and acceptance as a legitimate health issue of interest to employers.  One organization, Open Sourcing Mental Illness, is focusing particularly on mental illness in the information worker community in the technological sector, particularly in the open source community.  In 2016, it administered a survey to 1400 respondents from the tech community that addressed a wide variety of questions about mental health, employment benefits and offerings, personal and perceived workplace attitudes in regard to mental health, and other demographic and related information.  Our team used this data set for our project.  After cleanup and transformation of variables, we built a model to predict whether an individual would seek professional mental health services using data submitted in the survey.  We built several models with differing sets of variables, but noted several important commonalities among successful models that were influential in predicting the seeking of professional mental health help.  In particular, an individual was more likely to seek help if their employer offered mental health benefits, if the employee was well informed about the options offered by the employer for treatment, if anonymity could be maintained when using mental health or substance abuse treatment resources, and if the employee believed mental health to be negatively affecting work productivity.
+Mental illness is a complex set of interrelated conditions that are gaining increasing awareness and acceptance as a legitimate health issue of interest to employers.  One organization, Open Sourcing Mental Illness, is focusing particularly on mental illness in the information worker community in the technological sector, particularly in the open source community.  In 2016, it administered a survey to 1400 respondents from the tech community that addressed a wide variety of questions about mental health, employment benefits and offerings, personal and perceived workplace attitudes in regard to mental health, and other demographic and related information.  Our team used this data set for our project.  After cleanup and transformation of variables, we built a model to predict whether an individual would seek professional mental health services using data submitted in the survey.  We built several models with differing sets of variables, but noted several important commonalities among successful models that were influential in predicting the seeking of professional mental health help.  In particular, an individual was more likely to seek help if their employer offered mental health benefits, if the employee was well informed about the options offered by the employer for treatment, if anonymity could be maintained when using mental health or substance abuse treatment resources, and if the employee believed mental health to be negatively affecting work productivity.  However, due to data limitations, such results should be applied to the tech community at large only with great caution.  More research is needed to confirm these results.
 
 # Keywords
 
@@ -21,7 +21,7 @@ Mental illness, predictive modeling, workplace health, technology workers, healt
 
 # Introduction
 
-Open Sourcing Mental Illness (OSMI) is a non-profit organization that focuses on "raising awareness, educating, and providing resources to support mental wellness in the tech and open source communities" (Open Sourcing Mental Illness, 2018).It began in 2013 when Ed Finkler, a life long sufferer of mental illnesses, began speaking at technology conferences about his experiences with mental illness.  Due to the positive response he received, he has continued to speak and conduct research on mental illness in the technology community and to advocate for open discussion and support for those experiencing mental illness.  
+Open Sourcing Mental Illness (OSMI) is a non-profit organization that focuses on "raising awareness, educating, and providing resources to support mental wellness in the tech and open source communities" (Open Sourcing Mental Illness, 2018). It began in 2013 when Ed Finkler, a life long sufferer of mental illnesses, began speaking at technology conferences about his experiences with mental illness.  Due to the positive response he received, he has continued to speak and conduct research on mental illness in the technology community and to advocate for open discussion and support for those experiencing mental illness.  
 
 As part of Finkler's research,  several surveys have been conducted relating to mental health in the technology sector.  A 2014 survey had 1200 responses and focused generally on mental health in the tech industry, while a revised 2016 survey had 1400 responses and focused on "attitudes towards mental health in the tech workplace" (Open Sourcing Mental Illness, 2018).  At the time of this writing, a 2017 survey was still in progress.
 
@@ -29,9 +29,9 @@ Given Finkler's desire to foster an open discussion about mental illness in the 
 
 In addition to the data itself, OSMI has informational materials about workplace stressors, mental illness, and mental healh related costs.  Some of the data OSMI provides include the following information, which includes facts about their own data as well as about the scope of the impact of mental illness in the workplace (Talks & Videos, 2018):
 
-  * About 1 in 5 people experience mental illness in population at large
-  * 60% of 1400 respondents to survey had sought treatment for mental health conditions
-  * 50% of 1400 respondents to survey had been diagnosed with a mental illness
+  * About 1 in 5 people experience mental illness in the population at large
+  * 60% of 1400 respondents to the survey had sought treatment for mental health conditions
+  * 50% of 1400 respondents to the survey had been diagnosed with a mental illness
   * "High-pressure companies" have health care expenses 50% greater than others
   * "60-80% of workplace accidents are attributed to stress"
   * "Over 80% of doctor visits are stress-related"
@@ -43,9 +43,9 @@ Why does this matter?  To quote, "employees work harder when they are happy, and
 
 # Literature Review
 
-Mental health issues are a global challenge for employers, with 20% of the workforce estimated to have moderate or severe mental illness (Memish 2017).  This is consistent with overall population prevalence estimates from regional health authorities and mental health organizations: NAMI suggests a prevalence rate in any given year of one in five, NIMH gives a rate just below that, at 18.3%, and the World Health Organization’s surveys of mental health (WMH) give similar statistics for data collected from 28 countries  (National Alliance on Mental Illness 2018, National Institute of Mental Health 2016, Kessler 2009).  The range and impact of mental health disorders vary widely, ranging in severity to mild to severely impairing the daily activities of living for an individual.  The World Health Organization classifies the severity of mental disorders into mild, moderate, and serious categories, while the US National Institutes of Health has a nested taxonomy, using the terms “any mental illness” (AMI) and “serious mental illness” (SMI).   According to this ontology, AMI is defined as any “mental, behavioral, or emotional disorder”  AMIs can include all levels of a disorder, from mild cases all the way to severe mental illness and impairment (National Institute of Mental Health 2017).  SMIs form a subset of AMIs and are described as "a mental, behavioral, or emotional disorder resulting in serious functional impairment.”  SMIs have major impacts on affected individuals, from interfering with daily living skills or activities to causing total or complete disability.  NIMH notes that “the burden of mental illnesses is particularly concentrated among those who experience disability due to SMI" (National Institute of Mental Health 2017).
+Mental health issues are a global challenge for employers, with 20% of the workforce estimated to have moderate or severe mental illness (Memish 2017).  This is consistent with overall population prevalence estimates from regional health authorities and mental health organizations. NAMI suggests a prevalence rate in any given year of one in five, NIMH gives a rate just below that, at 18.3%, and the World Health Organization's surveys of mental health (WMH) give similar statistics for data collected from 28 countries  (National Alliance on Mental Illness 2018, National Institute of Mental Health 2016, Kessler 2009).  The range and impact of mental health disorders vary widely, ranging in severity from mild to severely impairing the daily activities of living for an individual.  The World Health Organization classifies the severity of mental disorders into mild, moderate, and serious categories, while the US National Institutes of Health has a nested taxonomy, using the terms "any mental illness" (AMI) and "serious mental illness" (SMI).   According to this ontology, AMI is defined as any "mental, behavioral, or emotional disorder" (National Institute of Mental Health 2017).  AMIs can include all levels of a disorder, from mild cases all the way to severe mental illness and impairment (National Institute of Mental Health 2017).  SMIs form a subset of AMIs and are described as "a mental, behavioral, or emotional disorder resulting in serious functional impairment" (National Institute of Mental Health 2017).  SMIs have major impacts on affected individuals, from interfering with daily living skills or activities to causing total or complete disability.  NIMH notes that "the burden of mental illnesses is particularly concentrated among those who experience disability due to SMI" (National Institute of Mental Health 2017).
 
-With one-fifth of the working population affected by disorders such as depression and anxiety, it is unsurprising that the effects of mental health issues, whether transient or long-term, are costly not only to individuals, but to companies as well.  The International Labour Association estimated over a decade ago that the costs associated with mental health would continue to rise due to demographic changes and socioeconomic and violence-related stressors (International Labour Association, 2000).  While employee health is of critical importance to employers, few comprehensive guidelines exist to assist employers in setting up a robust system to deal with mental health issues and their consequences, with many employers relying only, or primarily, on an Employee Assistance Program (Page 2013, Memish 2017).  The ILA points out, however, that other workplace elements, including training, human resources policy, occupational health approaches, and managerial culture, are implicated in the success of workers with mental illness (International Labour Association, 2000).  In one of the rare randomized control trials on the subject, Millagan-Saville et al. demonstrated that supportive employer policies including positive managerial communication and practical support, have been demonstrated to have reduced worker absenteeism and be a worthwhile financial investment on the part of companies, which receive a modest return on investment (Milligan-Saville, 2017).  It is in employers’ best interests to maintain a healthy and satisfied staff.
+With one-fifth of the working population affected by disorders such as depression and anxiety, it is unsurprising that the effects of mental health issues, whether transient or long-term, are costly not only to individuals, but to companies as well.  The International Labour Association estimated over a decade ago that the costs associated with mental health would continue to rise due to demographic changes and socioeconomic and violence-related stressors (International Labour Association, 2000).  While employee health is of critical importance to employers, few comprehensive guidelines exist to assist employers in setting up a robust system to deal with mental health issues and their consequences, with many employers relying only, or primarily, on an Employee Assistance Program (Page 2013, Memish 2017).  The ILA points out, however, that other workplace elements, including training, human resources policy, occupational health approaches, and managerial culture, are implicated in the success of workers with mental illness (International Labour Association, 2000).  In one of the rare randomized control trials on the subject, Millagan-Saville et al. demonstrated that supportive employer policies including positive managerial communication and practical support, have been demonstrated to have reduced worker absenteeism and be a worthwhile financial investment on the part of companies, which receive a modest return on investment (Milligan-Saville, 2017).  It is in an employer's best interests to maintain a healthy and satisfied staff.
 
 Data from the 2016 SAMSHA survey includes the prevalence rates of mental illnesses among US adults. Not surprisingly, all races, genders, and age were affected by mental illness, with women affected at higher rates than men (NIMH 2018).  Particularly noteworthy is the fact that young and middle aged adults have the highest year prevalence rate of AMIs (over 21%), while older adults had markedly reduced rates of mental illness in a given year, at less than 15% (NIMH 2018).  This illustrates the importance of mental illness awareness in the workplace, as the principal workforce (by age) is the most profoundly affected by mental illness.
 
@@ -64,7 +64,7 @@ The data here is taken from https://www.kaggle.com/osmi/mental-health-in-tech-su
 
 ## Limitations of the Data
 
-Before beginning the analysis, it should be noted that the data has limitations for scientific analysis.  The survey data was collected anonymously without identifying information.  As such, it relies on the honest reporting of respondents and cannot be verified for accuracy.  It was offered in English only and may exclude non-native English speakers through self-exclusion.  There was no tracking of the population, and a respondent could have answered multiple times.  Other self selection likely occured (e.g., North American, interested in and engaged in mental health topics) and as such, it is difficult to know what biases in the population exist.  Finally, the information about the employers comes from the employees filling out the survey and may be innaccurate from the perspective of the employer.  Consequently, given these limitations in the data, any results derived from studying the survey must be held tentatively and applied only to those who in fact responded to the survey.  Application to the tech community in general must be done so with great caution.
+Before beginning the analysis, it should be noted that the data has limitations for scientific analysis.  The survey data was collected anonymously without identifying information.  As such, it relies on the honest reporting of respondents and cannot be verified for accuracy.  It was offered in English only and may exclude non-native English speakers through self-exclusion.  There was no tracking of the population, and a respondent could have answered multiple times.  Other self selection likely occured (e.g., North American, interested in and engaged in mental health topics) and as such, it is difficult to know what biases in the sample exist relative to the population of tech employees.  Finally, the information in the survey about the employers comes from the employees filling out the survey and may be innaccurate from the perspective of the employer.  Consequently, given these limitations in the data, any results derived from studying the survey must be held tentatively and applied only to those who in fact responded to the survey.  Application to the tech community in general must be done so with great caution, and further research is needed in order to generalize these results.
 
 
 ## Data Summary
@@ -73,9 +73,9 @@ Let's take a quick peek at our data to diagnose any prima facie errors or issues
 
 ## Independent Variables
 
-While only 13% populated, the comments field is fascinating and ripe for text analysis.   To make useful, the field would need to be further prepared using NLP and features would need to be prepared for any regression to be done.  The timestamp field has been converted to the appropriate object type. 
+While only 13% of the comments are populated, the comments field is fascinating and ripe for text analysis.   To make useful, the field would need to be further prepared using NLP and features would need to be prepared for any regression to be done.  The timestamp field has been converted to the appropriate object type. 
 
-Our Age variable has some clear and impossible outliers.   There are multiple values < 18 (even some negative numbers) and some values > 200 years old.   Instead of replacing these, we set to NA and reviewed in the imputation process. We'll set the maximum reasonable age at 100, to accommodate any additional data that could potentially be added (e.g. from other years of the same survey).  Our minimum age will be 18, which allows us to know that we're conducting our analyses on adults (for human subjects protections reasons).  We'll remove the age from unrealistic measurements (like -1726 or 329, which are clearly impossible, and 5 or 11, which are too young to be able to be employed), and remove the entire row where the age is between 13 and 17, inclusive.  While there are currently no rows that seem to represent this underage teenager demographic, we add this out of an abundance of caution and to enable code reuse and reproducibility on similar datasets.
+Our Age variable has some clear and impossible outliers.  There are multiple values < 18 (even some negative numbers) and some values > 200 years old.  Instead of replacing these, we set to NA and reviewed in the imputation process. We'll set the maximum reasonable age at 100, to accommodate any additional data that could potentially be added (e.g. from other years of the same survey).  Our minimum age will be 18, which allows us to know that we're conducting our analyses on adults (for human subjects protections reasons).  We'll remove the age from unrealistic measurements (like -1726 or 329, which are clearly impossible, and 5 or 11, which are too young to be able to be employed), and remove the entire row where the age is between 13 and 17, inclusive.  While there are currently no rows that seem to represent this underage teenager demographic, we add this out of an abundance of caution and to enable code reuse and reproducibility on similar datasets.
 
 Gender is more interesting and complex in this dataset.   We trimmed down a very long list of self-reported gender by doing some rough matching and cleaning.  We see that there are some typos, some differences in capitalization, some differences in terminology ("woman" vs. "female"), some specifiers ("Cis" / "trans", some non-binary options, and some ambiguous answers.  We'll handle this by consolidating multiple terms into overarching categories and re-assigning common labels to each row.
 
@@ -94,26 +94,20 @@ Since the treatment variable is pretty evenly split (No=622/Yes=637) on whether 
 
 For the remaining two fields (self_employed and age), since we will only lose 26 observations, let's simply remove those observations.  With this, our data is roughly ready for experimentation and modeling.   
 
-### Data Overview
-
-```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('../Figures/DataSummary.png')
-```
-
 # Experimentation and Model Building
 ## Model building
 
 The goal of the model that we are building is to predict if an employee is going to seek mental health treatment, and this is going to depend on the circumstances at an employee work place.  
 
-The type of model that we are going to build is a logit model.   This is because we are predicting a binary output.  Will the person seek mental health treatment or not.   
+The type of model that we are going to build is a logistic logit model.   This is because we are predicting a binary output: will the person seek mental health treatment or not?   
 
 The method of model building that we are going to use is start with all the data, then drop variables that are not significant, build the model again and repeat.  
 
-Right off the at we will drop the field state from the dataset, since over 50% of the values for state are not populated. We will also drop the Timestamp field as this is just the timestamp of when the user filled out the survey.  
+To begin, we will drop the 'state' field from the dataset, since over 50% of the values for state are not populated. We will also drop the Timestamp field as this is just the timestamp of when the user filled out the survey.  
 
 ## Model 1 
 
-This model will predict mental if someone will seek mental health care based on all other variables in the dataset with the exception of `state`.  
+This model will predict if someone will seek mental health care based on all other variables in the dataset with the exception of `state`.  
 
 Here are the coefficents of this model.  Note that some colinearity of variables causes matrix singularities and corresponding NA values in the table for four variables.
 
@@ -259,7 +253,7 @@ The AIC is 1225 and the area under the curve is .7959
 
 ## Model 3
 
-For model 3, we take the variables with a pvalue of .1 or higher from model1 and use them to predict if an employee will seek treatment.  These variables include are the amount of interference from work that the issue causes (`work_interfere`), employer provides mental health benefits (`benefits`), know the care options (`care_options`), and stay anonymous (`anonymity`).  
+For model 3, we take the variables with a pvalue of 0.1 or higher from model1 and use them to predict if an employee will seek treatment.  These variables include are the amount of interference from work that the issue causes (`work_interfere`), employer provides mental health benefits (`benefits`), know the care options (`care_options`), and stay anonymous (`anonymity`).  
 
 The coeffecients of this model are: 
 
@@ -284,22 +278,35 @@ The AIC is   1214.9 and the Area under the curve is  .7912
 
 ## Summary of Results
 
-There is not much difference between model 2 and model 3.  Model 1 the model with all the variables is the best model as it has the lowest AIC and the highest area under the curve.  Therefore, this is a very well-designed survey for predicting if a person is going to seek mental health care.  Also if you are an employer and you want to encourage you employees to seek mental health care the things you can do are the following
+There is not much difference between model 2 and model 3.  Model 1 the model with all the variables is the best model as it has the lowest AIC and the highest area under the curve.  Therefore, this is a very well-designed survey for predicting if a person is going to get treatment for mental health.  Also, if you are an employer and you want to encourage you employees to seek treatment for mental health care, the things you can do are the following:
+
 1)	Provide Benefits
 2)	Make sure the person knows the care options
 3)	Make sure the person can stay anonymous
-Also the most personally influential factor if someone is going to seek help is if the mental illness interferes with work.  
 
-The biggest surprise in the data, is that if the employer provides resource or a wellness program they do not predict very well if the person is going to seek treatment.  We surmise that is probably because people want to stay anonymous if the seek mental health treatment.  
+Also, the most personally influential factor if someone is going to seek help is if the mental illness interferes with work.  
+
+The biggest surprise in the data, is that if the employer provides resource or a wellness program they do not predict very well if the person is going to seek treatment.  We surmise that is probably because people want to stay anonymous if they seek mental health treatment.  
 
 # Final Discussion and Conclusions
 
+In model1, the significant variables align with our expectations.  If work interferes at all (and especially often), this positively correlates with obtaining treatment whereas "no response" correlates negatively with treatment.  Clearly, if the illness is impacting one's life negatively, one will be more inclined to receive treatment.  Having a family history of mental illness is positively correlated with obtaining treatment.  Likely, one will be more aware of mental illness or more accepting of it as a legitimate health concern. Having benefits provided by the employer makes one more likely to have treatment, as one will likely not need to pay as much for treatment and so there is a lower barrier to treatment.  Similarly, having care options makes one more likely to obtain treatment.  Anonymity is positively correlated while no anonymity is negatively correlated, as we would expect if people are embarrased, ashamed, or otherwise disinclined to make their mental illness known to others, and seeking treatment would make this illness known.  Knowing coworkers that have the same struggle also positively correlates with treatment, as perhaps this is already an environment where people are more aware of mental illness and accepting of it.
 
+As the insignificant variables are removed, the coefficients change significantly and often take on the opposite effect of what we would expect.  For example, in model2, having no benefits is more positively impactful in obtaining treatment than having benefits.  The same is true for not having anonymity.  Model3 exhibits the same behavior.  We expect that such issues are likely due to collinearity, very few observations in the data, and other limitations of the data.
+
+Model1 certainly does the best job at explaining and predicting.  It has a deviance R^2 of 0.5131656.  Model2 has a deviance R^2 of  0.19, and Model3 has a deviance R^2 of 0.19 as well.  These are not very good, so we should not put too much weight in the coefficients for these models, while model1 is much more trustworty.  Consequently, if any results are to be derived, we should look to model1 to provide them.
+
+We have already noted many limitations in the data, the method of collection, and so forth.  However, there does appear to be some insights that can be gathered from the data as mentioned above.  As such, for conclusions that are more robust and can generalize broadly, further research is needed that address the limitations.  In particular, a more scientific study should be conducted across the tech sector using more observations, random sampling techniques, and so forth.  We expect that this would yield similar findings about why employees seek treatment versus not (benefits, care options, anonymity, work interference), but these results could be applied broadly and would not be subject to the limitations of the existing data set.  We certainly do hope that steps towards such research are being made.
 
 
 # Figures
 
-See word document
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('../Figures/Figure1.png')
+knitr::include_graphics('../Figures/DataSummary.png')
+
+
+```
 
 
 # Code
@@ -453,13 +460,13 @@ Harvard Health Publishing (2017). What Causes Depression.  _Harvard Health Blog_
 
 International Labour Organisation (Gabriel, P., Riitta Liimatainen, M.) (2000).  _Mental Health in the Workplace: Introduction: Executive Summary_.  Retrieved from http://www.ilo.org/skills/pubs/WCMS_108221/lang--en/index.htm.
 
-Kessler, R. C., Aguilar-Gaxiola, S., Alonso, J., Chatterji, S., Lee, S., Ormel, J., ...  Wang, P. S. (2009). The global burden of mental disorders: An update from the WHO World Mental Health (WMH) Surveys. _Epidemiologia E Psichiatria Sociale_, 18(1), 23–33. https://doi.org/10.1017/s1121189x00001421
+Kessler, R. C., Aguilar-Gaxiola, S., Alonso, J., Chatterji, S., Lee, S., Ormel, J., ...  Wang, P. S. (2009). The global burden of mental disorders: An update from the WHO World Mental Health (WMH) Surveys. _Epidemiologia E Psichiatria Sociale_, 18(1), 23-33. https://doi.org/10.1017/s1121189x00001421
 
 Ma, J. O. & Cline, D. (2004). _Emergency medicine manual_. New York: McGraw-Hill, Medical Pub. Division.
 
-Memish, K., Martin, A., Bartlett, L., Dawkins, S., & Sanderson, K. (2017). Workplace mental health: An international review of guidelines. _Preventive Medicine_, 101, 213–222. https://doi.org/10.1016/j.ypmed.2017.03.017
+Memish, K., Martin, A., Bartlett, L., Dawkins, S., & Sanderson, K. (2017). Workplace mental health: An international review of guidelines. _Preventive Medicine_, 101, 213-222. https://doi.org/10.1016/j.ypmed.2017.03.017
 
-Milligan-Saville, J. S., Tan, L., Gayed, A., Barnes, C., Madan, I., Dobson, M., ... Harvey, S. B. (2017). Workplace mental health training for managers and its effect on sick leave in employees: a cluster randomised controlled trial. _The Lancet Psychiatry_, 4(11), 850–858. https://doi.org/10.1016/s2215-0366(17)30372-3.
+Milligan-Saville, J. S., Tan, L., Gayed, A., Barnes, C., Madan, I., Dobson, M., ... Harvey, S. B. (2017). Workplace mental health training for managers and its effect on sick leave in employees: a cluster randomised controlled trial. _The Lancet Psychiatry_, 4(11), 850-858. https://doi.org/10.1016/s2215-0366(17)30372-3.
 
 National Institute of Mental Health, U.S. Department of Health and Human Services (2017).  _Mental Health_. Retrieved from www.nimh.nih.gov/health/statistics/mental-illness.shtml.
 
@@ -469,7 +476,7 @@ Organisation for Economic Cooperation and Development (OECD). Employment Outlook
 
 OSMI Mental Health in Tech Survey 2016 (2017).  Retrieved from https://www.kaggle.com/osmi/mental-health-in-tech-2016.
 
-Page, K. M., LaMontagne, A. D., Louie, A. M., Ostry, A. S., Shaw, A., & Shoveller, J. A. (2013). Stakeholder perceptions of job stress in an industrialized country: Implications for policy and practice. Journal of Public Health Policy, 34(3), 447–461. https://doi.org/10.1057/jphp.2013.24
+Page, K. M., LaMontagne, A. D., Louie, A. M., Ostry, A. S., Shaw, A., & Shoveller, J. A. (2013). Stakeholder perceptions of job stress in an industrialized country: Implications for policy and practice. Journal of Public Health Policy, 34(3), 447-461. https://doi.org/10.1057/jphp.2013.24
 
 Research (2017).  Retrieved from https://osmihelp.org/research.
 

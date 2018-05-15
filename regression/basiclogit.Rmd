@@ -27,13 +27,13 @@ summary(model1)
 
 
 ```{r}
-model2 <- glm(seek_help~ Age+Gender+ family_history+ work_interfere+family_history+benefits+care_options+anonymity+coworkers,  data =df, family=binomial )
+model2 <- glm(treatment~ Age+Gender+ family_history+ work_interfere+family_history+benefits+care_options+anonymity+coworkers,  data =df, family=binomial )
 summary(model2)
 
 ```
 
 ```{r}
-model3 <- glm(seek_help~ work_interfere + benefits+ care_options+  anonymity , data =df, family=binomial )
+model3 <- glm(treatment~ work_interfere + benefits+ care_options+  anonymity , data =df, family=binomial )
 summary(model3)
 ```
 
